@@ -1,19 +1,23 @@
 package main
 
 import (
+	"fmt"
 	"io/ioutil"
 	"log"
 	"strconv"
 	"strings"
+	"time"
 )
 
 func main() {
-
+	start := time.Now()
 	lista := leerArchivo("data/Data_1000000.txt")
 	//lista := generarLista(20)
 	// imprimirArreglo(lista)
 	mergeSort(lista, 0, len(lista)-1)
 	// imprimirArreglo(lista)
+	duration := time.Since(start)
+	fmt.Println("tiempo ", duration)
 }
 
 func leerArchivo(filePath string) []int {
