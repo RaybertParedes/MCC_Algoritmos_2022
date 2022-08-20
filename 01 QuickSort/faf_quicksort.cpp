@@ -84,10 +84,33 @@ int * slice(int tamano)
    return arreglo;
 }
 
+int * leerArchivo(string filePath) {
+    ifstream inputFile(filePath);
+    int i  = 0;
+	
+    int * arrayFromFile = new int[ tamano ];
+    if (!inputFile.is_open())
+        cout << "Error al abrir el archivo";
+
+    if (inputFile) {
+        int value;
+
+        while (inputFile >> value) {
+            //arrayFromFile.push_back(value);
+	    arreglo[ i ] = value;
+		
+        }
+    }
+
+    inputFile.close();
+    return arrayFromFile;
+}
+
 int main()
 {
 
-	int *arr = slice(tamano);
+	//int *arr = slice(tamano);
+	int *arr = leerArchivo("../Data_1000000.txt");
 	int n = tamano;
     
     cout << "Ini:" << timeSinceEpochMillisec() << endl;
