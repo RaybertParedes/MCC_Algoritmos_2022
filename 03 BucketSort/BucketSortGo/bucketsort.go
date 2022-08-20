@@ -76,6 +76,9 @@ func bucketSort(array []float64) []float64 {
 
 func main() {
 
-	arrayToSort := readDataFromFile("sample_data/BucketSort_100.txt")
+	start := time.Now()
+	arrayToSort := readDataFromFile("sample_data/BucketSort_100000.txt")
 	bucketSort(arrayToSort)
+	duration :=time.Since(start)
+	fmt.Println("tiempo ",duration)
 }
