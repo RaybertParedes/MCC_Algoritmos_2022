@@ -6,7 +6,11 @@
 # to come up with a "sorted" nums relative to the pivot
 import numpy as np
 import time 
- 
+
+def leerArchivo(file_path):
+	input_file = open(file_path, "r")
+	return [float(item) for item in input_file.read().split(' ')]
+
 def partition(l, r, nums):
     # Last element will be the pivot and the first element the pointer
     pivot, ptr = nums[r], l
@@ -33,7 +37,8 @@ def quicksort(l, r, nums):
         quicksort(pi+1, r, nums)  # Recursively sorting the right values
     return nums
  
-example = np.random.randint(0,1000,50000)
+#example = np.random.randint(0,1000,50000)
+example = leerArchivo(r'../Data_1000000.txt')
 
 start_time = time.time()
 quicksort(0, len(example)-1, example)
