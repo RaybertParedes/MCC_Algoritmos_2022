@@ -8,13 +8,34 @@ import (
 
 func main() {
 
-	slice := generateSlice(50000)
+	//slice := generateSlice(50000)
+	slice := leerArchivo("../Data_1000000.txt")
 	//fmt.Println("\n--- Unsorted --- \n\n", slice)
 	start := time.Now()
 	quicksort(slice)
 	elapsed := time.Since(start)
 	fmt.Printf("time %s", elapsed)
 	//fmt.Println("\n--- Sorted ---\n\n", slice, "\n")
+}
+
+func leerArchivo(filePath string) []int {
+	var ints []int
+	bytesLeidos, err := ioutil.ReadFile(filePath)
+	if err != nil {
+		log.Print(err)
+	}
+
+	str := string(bytesLeidos)
+	for index, element := range strings.Split(str, " ") {
+		log.Println(index)
+		intVar, err := strconv.Atoi(element)
+
+		if err != nil {
+			log.Print(err)
+		}
+		ints = append(ints, intVar)
+	}
+	return ints
 }
 
 // Generates a slice of size, size filled with random numbers
